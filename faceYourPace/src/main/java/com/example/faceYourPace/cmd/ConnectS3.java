@@ -13,8 +13,8 @@ public class ConnectS3 extends Thread{
         System.out.println("Python Call");
         String[] command = new String[3];
         command[0] = "python3";
-        command[1] = "'/home/ubuntu/face-your-pace-function/fyp_download/result/connectS3.py'"; // 파이썬 파일 위치
-        command[2] = "'"+musicName+"'"; // 음악 링크
+        command[1] = "/home/ubuntu/face-your-pace-function/fyp_download/result/connectS3.py"; // 파이썬 파일 위치
+        command[2] = musicName; // 음악 링크
 
         System.out.println(musicName);
         System.out.println(command[2]);

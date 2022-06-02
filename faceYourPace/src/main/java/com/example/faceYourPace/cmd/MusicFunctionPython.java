@@ -18,17 +18,21 @@ public class MusicFunctionPython {
         command[1] = "\"/home/ubuntu/face-your-pace-function/fyp_musicmodify/fyp_musicmodify.py\"";
         System.out.println("command[1]:" + command[1]);
         command[2] = audio_path;
-        System.out.println("wav_path:" + audio_path);
-        //command[2] = "1";
+       // System.out.println("wav_path:" + audio_path);
+        System.out.println("command[2]:" + command[2]);
+       //command[2] = "1";
         command[3] = save_path;
-        System.out.println("save_path:" + save_path);
+        System.out.println("command[3]:" + command[3]);
+	// System.out.println("save_path:" + save_path);
         command[4] = "\"" + musicStart + "\"";
-        System.out.println("start:" + musicStart);
-        command[5] = "\"" + musicEnd + "\"";
-        System.out.println("end:" + musicEnd);
-        command[6] = "\"" + target_bpm + "\"";
-        System.out.println("bpm:" + target_bpm);
-
+       // System.out.println("start:" + musicStart);
+        System.out.println("command[4]:" + command[4]);
+	command[5] = "\"" + musicEnd + "\"";
+       // System.out.println("end:" + musicEnd);
+        System.out.println("command[5]:" + command[5]);
+	command[6] = "\"" + target_bpm + "\"";
+       // System.out.println("bpm:" + target_bpm);
+	System.out.println("command[6]:" + command[6]);
         System.out.println(command.toString());
         try {
             return execPython(command);
