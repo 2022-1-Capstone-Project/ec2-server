@@ -22,10 +22,13 @@ def download_mp3(link, download_path):
     options.add_argument('--no-sandbox') # ??
     options.add_argument('--disable-dev-shm-usage') #??
 
+    #chrome_options.add_argument('--no-sandbox')
+    #chrome_options.add_argument('--disable-dev-shm-usage')
+    #driver = webdriver.Chrome(executable_path=settings.CHROMEDRIVER_PATH, options=options)
     '''
     맞는 executable_path 경로 설정해주세요
     '''
-    # driver = webdriver.Chrome(executable_path="/home/ubuntu/face-your-pace-function/download/chromedriver",options=options)
+    #driver = webdriver.Chrome(executable_path="/home/ubuntu/face-your-pace-function/download/chromedriver",options=options)
     driver = webdriver.Chrome(options=options,service=Service(ChromeDriverManager().install()))
     # selenium 4버전 부터 이런 식으로 sevice 변수로 여는 것을 권장하나봐요 찾아보니까 이렇게 나왔어요. 이렇게 작동 안되면 100번째 줄처럼 그냥 하시면 돼요
 
@@ -55,7 +58,9 @@ def download_mp3(link, download_path):
     title_path = '/html/body/div[2]/div[3]/div/div/div[1]/div[2]/div[2]/p[1]'
     title_xpath = driver.find_element(By.XPATH, value = title_path)
     title = title_xpath.text
-    print(title[6:])
+    #print(title[6:])
+
+
 
     # length 정보 추출
     length_path = '/html/body/div[2]/div[3]/div/div/div[1]/div[2]/div[2]/p[2]'
@@ -75,6 +80,10 @@ def download_mp3(link, download_path):
     time.sleep(15) # 서버가 좋으면 더 짧게 해도 가능
     driver.close()
 
+    # filepath = download_path
+    # filename = max([filepath + '\\' + f for f in os.listdir(filepath)], key=os.path.getctime)
+    # shutil.move(os.path.join(filepath, filename), new_filename)
+
     '''
     bpm 까지 추출하도록 하면 여기서 진행되어야 함. 
     y, sr = librosa.load(ownload_path, sr= 96000) # 다운로드 한 위치로
@@ -83,8 +92,11 @@ def download_mp3(link, download_path):
     '''
 
     # 노래 제목, 재생 길이, 커버사진을 $ 를 구분자로 return
-    print(title[6:]+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
-    return (title[6:]+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
+    #print(title[6:]+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
+    print(title[6:].strip()+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
+    #return (title[6:]+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
+    return (title[6:].strip()+'<>'+str(to_sec(length[7:-8]))+'<>'+image_xpath)
+
     
 
 if __name__ == '__main__':
@@ -95,6 +107,6 @@ if __name__ == '__main__':
     # print(link)
     # print(download_path)
     a = download_mp3(link,download_path)
-    print(a)
+    #print(a)
 
     # download_mp3('https://soundcloud.com/ferret-lie/only-your-stars-trickstar-ver',r'C:\Users\yoondain\Desktop\capstone')

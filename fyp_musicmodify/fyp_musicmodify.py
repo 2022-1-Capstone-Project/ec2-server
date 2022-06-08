@@ -10,6 +10,12 @@ def to_sec(t):
     min, sec = t.rstrip().split(sep=":")
     return 60 * int(min) + int(sec)
 
+def to_time(a :int):
+    min = a//60
+    sec = a - 60*min
+    return (str(min).zfill(2) + ':' + str(sec).zfill(2))
+
+
 def function(audio_path:str, save_path:str, start_time:str, end_time:str,target_bpm:str):
     start_time = to_sec(start_time) 
     end_time = to_sec(end_time)
@@ -70,8 +76,12 @@ def function(audio_path:str, save_path:str, start_time:str, end_time:str,target_
     # speed
     if target_bpm != 0:
         rate = round(target_bpm/round(tempo),2) # 늘릴 노래 rate 계산 tempo는 소수점 첫째자리에서 반올림
+        play_time = int((end_time-start_time)/rate)
+        print(play_time)
         y_fast = librosa.effects.time_stretch(new_y, rate=rate)
-    else: y_fast = new_y
+    else: 
+        print(end_time-start_time)
+        y_fast = new_y
 
     # s5 = time.time()
     # print(f'stretch time : {s5-s4}')
